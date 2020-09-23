@@ -38,4 +38,20 @@ stages:
     - task: Bash@3
       inputs:
         targetType: 'inline'
-        script: 'echo ''Hello world in TEST'''
+        script: 'echo ''Hello world in $(System.StageName)'''
+- stage: STAGE
+  jobs:
+  - job: STAGE
+    steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'echo ''Hello world in $(System.StageName)'''
+- stage: PROD
+  jobs:
+  - job: PROD
+    steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'echo ''Hello world in $(System.StageName)'''
