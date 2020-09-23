@@ -13,7 +13,7 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    options: '--batch-mode'
+    options: '$(MAVEN_OPTIONS)'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
