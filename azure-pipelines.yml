@@ -12,7 +12,7 @@ pool:
 stages:
 - stage: DEV
   jobs:
-  - job:
+  - job: DEV
     steps:
     - task: Maven@3
       inputs:
@@ -27,3 +27,15 @@ stages:
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'echo ''Hello world'''
+- stage: TEST
+  jobs:
+  - job: TEST
+    steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'echo ''Hello world in TEST'''
