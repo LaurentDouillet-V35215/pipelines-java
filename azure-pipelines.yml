@@ -36,10 +36,12 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'echo ''Hello world'''
-          - task: ManualValidation@0
-            inputs:
-              notifyUsers: 'slawek.zachcial@gmail.com'
-              instructions: 'Please validate the exit from DEV stage.'
+  - job: DEVValidation
+    steps:
+    - task: ManualValidation@0
+      inputs:
+        notifyUsers: 'slawek.zachcial@gmail.com'
+        instructions: 'Please validate the exit from DEV stage.'
 - stage: TEST
   jobs:
   - job: TEST
