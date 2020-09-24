@@ -18,6 +18,7 @@ stages:
       runOnce:
         preDeploy:
           steps:
+          - checkout: self
           - task: Maven@3
             inputs:
               mavenPomFile: 'pom.xml'
