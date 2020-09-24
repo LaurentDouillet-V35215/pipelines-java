@@ -16,7 +16,7 @@ stages:
     environment: DEV
     strategy:
       runOnce:
-        deploy:
+        preDeploy:
           steps:
           - task: Maven@3
             inputs:
