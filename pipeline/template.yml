@@ -14,6 +14,6 @@ jobs:
     steps:
     - script: echo "In Template"
     - script: echo "Task X"
-      condition: not(skipTaskXVar)
+      condition: ne(variables.skipTaskXVar, 'True')
     - script: echo "Task Y"
-      condition: not(skipTaskYVar)
+      condition: ne(variables.skipTaskYVar, 'True')
