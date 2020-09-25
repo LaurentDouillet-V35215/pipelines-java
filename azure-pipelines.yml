@@ -12,6 +12,9 @@ pool:
 stages:
 - stage: DEV
   jobs:
+  - job: DEV0
+    steps:
+      - template: pipeline/template.yml
   - deployment: DEV
     environment: DEV
     strategy:
@@ -36,12 +39,12 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'echo ''Hello world'''
-  - job: DEVValidation
-    steps:
-    - task: ManualValidation@0
-      inputs:
-        notifyUsers: 'slawek.zachcial@gmail.com'
-        instructions: 'Please validate the exit from DEV stage.'
+#  - job: DEVValidation
+#    steps:
+#    - task: ManualValidation@0
+#      inputs:
+#        notifyUsers: 'slawek.zachcial@gmail.com'
+#        instructions: 'Please validate the exit from DEV stage.'
 - stage: TEST
   jobs:
   - job: TEST
