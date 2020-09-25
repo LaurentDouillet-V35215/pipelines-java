@@ -9,8 +9,8 @@ parameters:
 jobs:
   - job: TEMPLATE
     variables:
-      skipTaskX: ${{ skipTaskX }}
-      skipTaskY: ${{ skipTaskY }}
+      skipTaskX: ${{ parameters.skipTaskX }}
+      skipTaskY: ${{ parameters.skipTaskY }}
     steps:
     - script: echo "In Template"
     - script: echo "Task X"
