@@ -15,12 +15,10 @@ variables:
 stages:
 - stage: DEV
   jobs:
-  - job: DEV0
-    steps:
-      - template: pipeline/template.yml
-        parameters:
-          skipTaskX: $[isMain]
-          skipTaskY: $[not(isMain)]
+  - template: pipeline/template.yml
+    parameters:
+      skipTaskX: $[isMain]
+      skipTaskY: $[not(isMain)]
 #   - deployment: DEV
 #     environment: DEV
 #     strategy:
