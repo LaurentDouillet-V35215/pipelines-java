@@ -1,0 +1,10 @@
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
+steps:
+- script: echo "In Template"
+- script: echo "master? $(isMain)"
+- script: echo "This runs on master only"
+  condition: isMain
+- script: echo "This does NOT run on master"
+  condition: not(isMain)
