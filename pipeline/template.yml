@@ -1,10 +1,10 @@
 parameters:
 - name: skipTaskX
   type: boolean
-  value: false
+  default: false
 - name: skipTaskY
   type: boolean
-  value: false
+  default: false
 
 steps:
 - script: echo "In Template"
