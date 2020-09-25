@@ -1,7 +1,14 @@
+parameters:
+- name: skipTaskX
+  type: boolean
+  value: false
+- name: skipTaskY
+  type: boolean
+  value: false
+
 steps:
 - script: echo "In Template"
-#- script: echo "master? $(eq(variables['Build.SourceBranch'], 'refs/heads/master'))"
-- script: echo "This runs on master only"
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-- script: echo "This does NOT run on master"
-  condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
+- script: echo "Task X"
+  condition: ${{ not(skipTaskX) }}
+- script: echo "Task Y"
+  condition: ${{ not(skipTaskY) }}
