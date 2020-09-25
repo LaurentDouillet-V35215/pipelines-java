@@ -17,8 +17,9 @@ stages:
   jobs:
   - template: pipeline/template.yml
     parameters:
-      skipTaskX: $[isMain]
-      skipTaskY: $[not(isMain)]
+      # skipTaskX: $[isMain]
+      skipTaskX: $(isMain)
+      # skipTaskY: $[not(isMain)]
 #   - deployment: DEV
 #     environment: DEV
 #     strategy:
