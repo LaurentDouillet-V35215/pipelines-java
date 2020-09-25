@@ -1,14 +1,19 @@
 parameters:
 - name: skipTaskX
-  type: boolean
-  default: false
+  type: string
+  default: 'False'
 - name: skipTaskY
-  type: boolean
-  default: false
+  type: string
+  default: 'False'
 
-steps:
-- script: echo "In Template"
-- script: echo "Task X"
-  condition: ${{ not(skipTaskX) }}
-- script: echo "Task Y"
-  condition: ${{ not(skipTaskY) }}
+jobs:
+  - job: TEMPLATE
+    variables:
+      skipTaskX: ${{ skipTaskX }}
+      skipTaskY: ${{ skipTaskY }}
+    steps:
+    - script: echo "In Template"
+    - script: echo "Task X"
+      condition: not(skipTaskX)
+    - script: echo "Task Y"
+      condition: not(skipTaskY)

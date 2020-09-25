@@ -19,59 +19,59 @@ stages:
     steps:
       - template: pipeline/template.yml
         parameters:
-          skipTaskX: ${{ variables.isMain }}
-          skipTaskY: ${{ not(variables.isMain) }}
-  - deployment: DEV
-    environment: DEV
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - checkout: self
-          - task: Maven@3
-            inputs:
-              mavenPomFile: 'pom.xml'
-              options: '$(MAVEN_OPTIONS)'
-              publishJUnitResults: true
-              testResultsFiles: '**/surefire-reports/TEST-*.xml'
-              javaHomeOption: 'JDKVersion'
-              jdkVersionOption: '1.8'
-              mavenVersionOption: 'Default'
-              mavenOptions: '-Xmx3072m'
-              mavenAuthenticateFeed: false
-              effectivePomSkip: false
-              sonarQubeRunAnalysis: false
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: 'echo ''Hello world'''
+          skipTaskX: $[isMain]
+          skipTaskY: $[not(isMain)]
+#   - deployment: DEV
+#     environment: DEV
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - checkout: self
+#           - task: Maven@3
+#             inputs:
+#               mavenPomFile: 'pom.xml'
+#               options: '$(MAVEN_OPTIONS)'
+#               publishJUnitResults: true
+#               testResultsFiles: '**/surefire-reports/TEST-*.xml'
+#               javaHomeOption: 'JDKVersion'
+#               jdkVersionOption: '1.8'
+#               mavenVersionOption: 'Default'
+#               mavenOptions: '-Xmx3072m'
+#               mavenAuthenticateFeed: false
+#               effectivePomSkip: false
+#               sonarQubeRunAnalysis: false
+#           - task: Bash@3
+#             inputs:
+#               targetType: 'inline'
+#               script: 'echo ''Hello world'''
 #  - job: DEVValidation
 #    steps:
 #    - task: ManualValidation@0
 #      inputs:
 #        notifyUsers: 'slawek.zachcial@gmail.com'
 #        instructions: 'Please validate the exit from DEV stage.'
-- stage: TEST
-  jobs:
-  - job: TEST
-    steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: 'echo ''Hello world in $(System.StageName)'''
-- stage: STAGE
-  jobs:
-  - job: STAGE
-    steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: 'echo ''Hello world in $(System.StageName)'''
-- stage: PROD
-  jobs:
-  - job: PROD
-    steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: 'echo ''Hello world in $(System.StageName)'''
+# - stage: TEST
+#   jobs:
+#   - job: TEST
+#     steps:
+#     - task: Bash@3
+#       inputs:
+#         targetType: 'inline'
+#         script: 'echo ''Hello world in $(System.StageName)'''
+# - stage: STAGE
+#   jobs:
+#   - job: STAGE
+#     steps:
+#     - task: Bash@3
+#       inputs:
+#         targetType: 'inline'
+#         script: 'echo ''Hello world in $(System.StageName)'''
+# - stage: PROD
+#   jobs:
+#   - job: PROD
+#     steps:
+#     - task: Bash@3
+#       inputs:
+#         targetType: 'inline'
+#         script: 'echo ''Hello world in $(System.StageName)'''
