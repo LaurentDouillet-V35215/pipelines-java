@@ -9,12 +9,18 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
 stages:
 - stage: DEV
   jobs:
   - job: DEV0
     steps:
       - template: pipeline/template.yml
+        parameters:
+          skipTaskX: ${{ variables.isMain }}
+          skipTaskY: ${{ not(variables.isMain) }}
   - deployment: DEV
     environment: DEV
     strategy:
