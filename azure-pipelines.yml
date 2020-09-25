@@ -11,15 +11,15 @@ pool:
 
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  isNotMain: $[not(isMain)]
 
 stages:
 - stage: DEV
   jobs:
   - template: pipeline/template.yml
     parameters:
-      # skipTaskX: $[isMain]
       skipTaskX: $(isMain)
-      # skipTaskY: $[not(isMain)]
+      skipTaskY: $(isNotMain)
 #   - deployment: DEV
 #     environment: DEV
 #     strategy:
