@@ -9,11 +9,11 @@ parameters:
 jobs:
   - job: TEMPLATE
     variables:
-      skipTaskX: ${{ parameters.skipTaskX }}
-      skipTaskY: ${{ parameters.skipTaskY }}
+      skipTaskXVar: ${{ parameters.skipTaskX }}
+      skipTaskYVar: ${{ parameters.skipTaskY }}
     steps:
     - script: echo "In Template"
     - script: echo "Task X"
-      condition: not(skipTaskX)
+      condition: not(skipTaskXVar)
     - script: echo "Task Y"
-      condition: not(skipTaskY)
+      condition: not(skipTaskYVar)
