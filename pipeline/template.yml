@@ -1,6 +1,6 @@
 steps:
 - script: echo "In Template"
-- script: echo "master? $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]"
+- script: echo "master? $(eq(variables['Build.SourceBranch'], 'refs/heads/master'))"
 - script: echo "This runs on master only"
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 - script: echo "This does NOT run on master"
